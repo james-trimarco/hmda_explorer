@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="James Trimarco">
+
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"
+            type="text/css">
+
+        <meta name="description" content="HMDA data grabber">
+        <title>HMDA Data Grabber by James Trimarco</title>
+    </head>
+
+    <body>
+
+        <h1>HMDA Data Grabber</h1>
+        <h2>A Look at Home Loan Approval Rates By State</h2>
+
+        <div>
+            <p class="wait">Let's start by taking at a look at home mortgage approval rates by state.
+            </p>
+            <p class="wait">Please wait a moment while I download the data from the Consumer
+                Financial Protection Bureau.
+            </p>
+
+            <p class="ready" style="display:none;">Use the state selector to pick a state
+                you want to look at. If you'd like to zoom in to see how home buyers of specific
+                racial backgrounds have done in that state, use the race selector as well.
+            </p>
+
+        </div>
+
+        <div id="container-1" style="display:none;" class="animate-bottom">
+
+            <div id="controls">
+
+                <select id="statePick"></select>
+                <select id="racePick"></select>
+
+                <button id="search">Show me loan approvals and denials in this state.</button>
+            </div>
+        </div>
+
+        <div id="container-2">
+
+            <div id="controls-2">
+                <select id="statePick-2"></select>
+                <select id="metroPick"></select>
+
+                <button id="search">Show me stuff about this metro.</button>
+            </div>
+
+            <div id="loader"></div>
+
+        </div>
+
+        <script type="text/javascript" src="lib/jquery.js"></script>
+        <script type="text/javascript" src="lib/d3.v4.min.js"></script>
+        <script type="text/javascript" src="scripts/state-race-loan-plotter.js"></script>
+        <script type="text/javascript" src="scripts/listData.js"></script>
+        <link rel="stylesheet" href="style.css">
+
+        <script src="scripts/scripts.js"></script>
+
+    </body>
+</html>
