@@ -1,4 +1,8 @@
 /**
+ * The functions below do the data analysis and visualization for the app.
+ */
+
+/**
  * This variable, hmdaStem, is defined globally because it's needed
  * widely by multiple functions. It's also crucial that different
  * functions use exactly the same version of the stem.
@@ -8,7 +12,7 @@ var hmdaStem = 'https://api.consumerfinance.gov:443/data/hmda/slice/hmda_lar.jso
 /**
  * This function, cacheQueries_1, prepares the user experience by generating an ajax query
  * for every combination of variables the user could possibly make. Without
- * this step, some queries will time out. The publisher of the data suggested
+ * this step, some queries will time out, so the publisher of the data suggested
  * I take this approach. It took 7.7 seconds in a recent test, but once it's
  * done the app works well.
  */
@@ -36,7 +40,7 @@ function cacheQueries_1() {
         $('.ready').css('display', "block");
     }
 
-    // Two-dimension loop, to give every possible permutation of state and race.
+    // Two-dimensional loop, to give every possible permutation of state and race.
     for (i = 0; i < stateList.length; i++) {
         for (j = 0; j < raceList.length; j++) {
 
@@ -262,7 +266,8 @@ function buildScatterPlot(filtered, percentApproved) {
         .domain([0, 1])
         .range([h - padding, padding]);
 
-    // This defines a function that will draw the blue line.
+    // This defines a function that will draw the blue line that represents
+    // the percentage of loans approved.
     var valueline = d3.line()
         .x(function (d) {
             return xScale(d.year);
@@ -354,7 +359,7 @@ function buildScatterPlot(filtered, percentApproved) {
         // Add the second y axis
         svg.append("g")
             .attr("id", "y-axis-2")
-            .attr("transform", "translate(" + w + " ,0)")
+            .attr("transform", "translate(" + ( w + 50 ) + " ,0)")
             .call(d3.axisRight(yScale2)
                 .ticks(5)
                 .tickFormat(d3.format(".0%")));
@@ -363,7 +368,7 @@ function buildScatterPlot(filtered, percentApproved) {
         svg.append("text")
             .attr("transform", "rotate(-90)")
             .attr("id", "y2-label")
-            .attr("y", (w + 60))
+            .attr("y", (w + 120 ))
             .attr("x", 0 - (h / 2))
             .attr("dy", "1em")
             .style("text-anchor", "middle")
