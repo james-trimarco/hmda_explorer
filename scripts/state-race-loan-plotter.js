@@ -362,7 +362,7 @@ function buildScatterPlot(filtered, percentApproved) {
         // Add the second y axis
         svg.append("g")
             .attr("id", "y-axis-2")
-            .attr("transform", "translate(" + ( w + 50 ) + " ,0)")
+            .attr("transform", "translate(" + w + " ,0)")
             .call(d3.axisRight(yScale2)
                 .ticks(5)
                 .tickFormat(d3.format(".0%")));
@@ -371,7 +371,7 @@ function buildScatterPlot(filtered, percentApproved) {
         svg.append("text")
             .attr("transform", "rotate(-90)")
             .attr("id", "y2-label")
-            .attr("y", (w + 120 ))
+            .attr("y", (w + 60 ))
             .attr("x", 0 - (h / 2))
             .attr("dy", "1em")
             .style("text-anchor", "middle")
