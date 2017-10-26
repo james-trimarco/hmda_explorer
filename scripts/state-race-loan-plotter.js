@@ -16,6 +16,7 @@ var hmdaStem = 'https://api.consumerfinance.gov:443/data/hmda/slice/hmda_lar.jso
  * I take this approach. It took 7.7 seconds in a recent test, but once it's
  * done the app works well.
  */
+
 function cacheQueries_1() {
 
     // These variables allow us to dynamically build query URLs.
@@ -38,6 +39,9 @@ function cacheQueries_1() {
         $('#container-1').css('display', "block");
         $('.wait').css('display', "none");
         $('.ready').css('display', "block");
+
+        //Draws the initial chart, when all queries have been cached.
+        hmdaQuery();
     }
 
     // Two-dimensional loop, to give every possible permutation of state and race.
@@ -81,7 +85,7 @@ function cacheQueries_1() {
                     timeout: 30000
                 })
                 .done(function (json) {
-                    console.log("success!"); // Not sure if it's standard to log things to the console in a loop.
+                    console.log("caching ... success!");
                     })
                 .fail(function (jqXHR, textStatus, errorThrown) {
                     console.log("error=" + errorThrown);
@@ -97,7 +101,7 @@ function cacheQueries_1() {
 
     } // end of for loop
 
-    hmdaQuery(); // This call builds the initial chart that appears when the loop is done.
+    //hmdaQuery(); // This call builds the initial chart that appears when the loop is done.
 
 } // End of cacheQueries function
 
@@ -133,7 +137,7 @@ function hmdaQuery(statePick) {
             method: "GET",
             datatype: 'json',
             url: hmdaUrl,
-            timeout: 8000
+            timeout: 30000
         })
         .done(function (json) {
             console.log("User-generated search: success!");
@@ -141,6 +145,7 @@ function hmdaQuery(statePick) {
             console.log(json);
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log(hmdaUrl);
             console.log("error=" + errorThrown);
         })
         .always(function (data) {

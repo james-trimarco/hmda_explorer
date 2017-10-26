@@ -1,9 +1,8 @@
 /**
- * FINAL project for JS200B
- * HMDA Data Grabber v1.0
+ * HMDA Data Visualizer v1.1
  * by James Trimarco
- * Submitted March 26, 2017
- * 
+ * Version 1.0: March 26, 2017
+ * Version 1.1: October 25, 2017
  */
 
 (function ($) {
@@ -20,6 +19,8 @@
  * and calls hmdaQuery() when that's done.
  */
         cacheQueries_1();
+        //hmdaQuery();
+
 
         $('#search').click(hmdaQuery); // Listens for clicks on the search button.
 
