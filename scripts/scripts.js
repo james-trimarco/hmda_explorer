@@ -15,11 +15,9 @@
         console.log("UI is ready!");
 
 /**
- * Initiates the initial loop of ajax queries to the CFPB server,
- * and calls hmdaQuery() when that's done.
+ * Initiates the initial loop of ajax queries to the CFPB server.
  */
         cacheQueries_1();
-        //hmdaQuery();
 
 
         $('#search').click(hmdaQuery); // Listens for clicks on the search button.

@@ -101,8 +101,6 @@ function cacheQueries_1() {
 
     } // end of for loop
 
-    //hmdaQuery(); // This call builds the initial chart that appears when the loop is done.
-
 } // End of cacheQueries function
 
 /**
