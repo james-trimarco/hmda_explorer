@@ -18,10 +18,12 @@ function metroQuery(callback) {
             timeout: 5000
         })
         .done(function(json) {
-            window.metroList = callback(json.results); // Slightly sketchy ... maybe take this to StackOverflow.
+            window.metroList = callback(json.results); // Slightly sketchy to use a global object in this way...
+            buildMetroList("AL");
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
             console.log("error=" + errorThrown);
+            return $.Deferred().resolve(false);
         });
 }
 
@@ -45,3 +47,28 @@ function buildStateList(json) {
             var stateNames = pieces[1].split(','); //the names of the state are the second.
 
             for (j = 0; j < stateNames.length; j++) {
+
+                var state = stateNames[j].trim();
+                if (state.length === 2) {
+                    json[i].states.push(state); // adds the state to the metro object
+                }
+            }
+        } //End of second for loop
+    }
+    return json;
+}
+
+function buildMetroList(val) {
+    console.log(val);
+    let selectedCities = [];
+
+    for (i = 0; i < metroList.length; i++) {
+        if (isInArray(val, metroList[i].states)) {
+            selectedCities.push(metroList[i]);
+        }
+    }
+    console.log(selectedCities);
+
+    appendListOptions("metroPick", selectedCities, "msamd", "msamd_name");
+    $('#metroPick').css('display', "block");
+}
