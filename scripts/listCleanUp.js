@@ -60,7 +60,12 @@ function buildStateList(json) {
 
 function buildMetroList(val) {
     console.log(val);
+    const noSelection = {
+        msamd: "0",
+        msamd_name: "No city selected"
+    }
     let selectedCities = [];
+    selectedCities.push(noSelection);
 
     for (i = 0; i < metroList.length; i++) {
         if (isInArray(val, metroList[i].states)) {

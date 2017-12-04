@@ -7,7 +7,7 @@
  * widely by multiple functions. It's also crucial that different
  * functions use exactly the same version of the stem.
  */
-var hmdaStem = 'https://api.consumerfinance.gov:443/data/hmda/slice/hmda_lar.json?';
+const hmdaStem = 'https://api.consumerfinance.gov:443/data/hmda/slice/hmda_lar.json?';
 
 /**
  * This function, cacheQueries_1, prepares the user experience by generating an ajax query
@@ -18,9 +18,10 @@ var hmdaStem = 'https://api.consumerfinance.gov:443/data/hmda/slice/hmda_lar.jso
  */
 
 function cacheQueries_1() {
+    console.log("running cacheQueries")
 
     // These variables allow us to dynamically build query URLs.
-    var i, j, // Loop variables.
+    let i, j, // Loop variables.
         completedRequests = 0, // This is a counter that keeps track of how many requests have been completed.
 
         /**
@@ -29,20 +30,7 @@ function cacheQueries_1() {
          */
         len = (stateList.length * raceList.length);
 
-    /**
-     * This function makes the loader go away and shows the initial
-     * chart instead. It also swaps out the wait text with the ready text.
-     * It gets called once completedRequests === len.
-     */
-    function showPage() {
-        $('#loader').css('display', "none");
-        $('#container-1').css('display', "block");
-        $('.wait').css('display', "none");
-        $('.ready').css('display', "block");
 
-        //Draws the initial chart, when all queries have been cached.
-        hmdaQuery();
-    }
 
     // Two-dimensional loop, to give every possible permutation of state and race.
     for (i = 0; i < stateList.length; i++) {
@@ -107,7 +95,18 @@ function cacheQueries_1() {
  * This function makes an ajax call to the CFPB server, and runs
  * the D3.js code needed to visualize it in a chart.
  */
-function hmdaQuery(statePick) {
+
+function stateLevelQuery() {
+    let hmdaUrl = buildStateUrl();
+
+}
+
+function metroLevelQuery() {
+    let hmdaUrl = buildMetroUrl();
+
+}
+
+function hmdaQuery() {
 
     /**
      * These variables allow us to dynamically build URLs for ajax calls.
@@ -115,20 +114,9 @@ function hmdaQuery(statePick) {
      * in this case we're using user input, rather than looping through
      * all the possible options.
      */
-    var stateSelection = $('#statePick').val(),
-        raceSelection = $('#racePick').val(),
-        hmdaSelector;
-
-    if (raceSelection === '0') {
-        hmdaSelector = '$select=state_abbr,as_of_year,action_taken,COUNT()&$where=state_abbr="' + stateSelection + '"&$group=state_abbr,as_of_year,action_taken&$orderBy=as_of_year,action_taken&$offset=0&$format=json';
-    } else {
-        hmdaSelector = '$select=state_abbr,as_of_year,action_taken,applicant_race_1,COUNT()&$where=applicant_race_1=' + raceSelection + '+AND+state_abbr="' + stateSelection + '"&$group=state_abbr,as_of_year,applicant_race_1,action_taken&$orderBy=as_of_year,action_taken&$offset=0&$format=json';
-    }
-
-    var hmdaUrl = hmdaStem + hmdaSelector;
 
     // I think it's useful to have a record of the search query in the console.
-    console.log("Preparing to visualize data from " + hmdaUrl);
+
 
     var hmdaData = $.ajax({
             accept: 'application/json',
@@ -204,7 +192,6 @@ function hmdaQuery(statePick) {
             buildScatterPlot(filtered, percentApproved);
 
         });
-
 
 } // End of hmdaQuery function.
 
@@ -457,3 +444,41 @@ function buildScatterPlot(filtered, percentApproved) {
     }
 
 } //End of buildScatterPlot function
+
+/**
+ * This function makes the loader go away and shows the initial
+ * chart instead. It also swaps out the wait text with the ready text.
+ * It gets called once completedRequests === len.
+ */
+function showPage() {
+    $('#loader').css('display', "none");
+    $('#container-1').css('display', "block");
+    $('.wait').css('display', "none");
+    $('.ready').css('display', "block");
+
+    //Draws the initial chart, when all queries have been cached.
+    hmdaQuery();
+}
+
+//
+function buildStateUrl() {
+    let stateSelection = $('#statePick').val(),
+        raceSelection = $('#racePick').val(),
+        metroSelection = $('#metroPick').val(),
+        hmdaSelector;
+
+    if (raceSelection === '0') {
+        hmdaSelector = '$select=state_abbr,as_of_year,action_taken,COUNT()&$where=state_abbr="' + stateSelection + '"&$group=state_abbr,as_of_year,action_taken&$orderBy=as_of_year,action_taken&$offset=0&$format=json';
+    } else {
+        hmdaSelector = '$select=state_abbr,as_of_year,action_taken,applicant_race_1,COUNT()&$where=applicant_race_1=' + raceSelection + '+AND+state_abbr="' + stateSelection + '"&$group=state_abbr,as_of_year,applicant_race_1,action_taken&$orderBy=as_of_year,action_taken&$offset=0&$format=json';
+    }
+
+    let hmdaUrl = hmdaStem + hmdaSelector;
+    return hmdaUrl;
+}
+
+//
+function buildMetroUrl() {
+    let hmdUrl = hmdaStem + "aaa";
+    return hmdaUrl;
+}

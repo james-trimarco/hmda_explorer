@@ -23,10 +23,10 @@ appendListOptions = function (selId, list, val, name) {
 
     $(document).ready(function () {
 
+        // Queries the CFPB and builds an up-to-date list of metro areas.
         metroQuery(buildStateList);
 
-              // Queries the CFPB and builds an up-to-date list of metro areas.
-
+        // Builds the basic user interface.
         var ui = new UiHelper();
         ui.init(); // Launches a function to complete the user interface.
 
@@ -36,8 +36,6 @@ appendListOptions = function (selId, list, val, name) {
  * Initiates the initial loop of ajax queries to the CFPB server.
  */
         cacheQueries_1();
-
-
 
         $('#search').click(hmdaQuery); // Listens for clicks on the search button.
 
@@ -52,7 +50,6 @@ function UiHelper() {
     this.init = function () {
         appendListOptions("statePick", stateList, "code", "name");
         appendListOptions("racePick", raceList, "code", "name");
-
     };
 
 }
