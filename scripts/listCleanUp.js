@@ -58,21 +58,25 @@ function buildStateList(json) {
     return json;
 }
 
+// Populates metroList dropdown with correct list of cities.
 function buildMetroList(val) {
     console.log(val);
-    const noSelection = {
+    $('#metroPick').empty(); // Clears out any previous list content
+
+    let selectedCities = []; // This array will hold correct city data
+
+    const noSelection = { // This object makes sure there's an option for no selection
         msamd: "0",
         msamd_name: "No city selected"
     }
-    let selectedCities = [];
-    selectedCities.push(noSelection);
+
+    selectedCities.push(noSelection); // Pushes noSelection to selectedCities
 
     for (i = 0; i < metroList.length; i++) {
         if (isInArray(val, metroList[i].states)) {
             selectedCities.push(metroList[i]);
         }
     }
-    console.log(selectedCities);
 
     appendListOptions("metroPick", selectedCities, "msamd", "msamd_name");
     $('#metroPick').css('display', "block");
