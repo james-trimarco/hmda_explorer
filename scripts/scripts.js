@@ -5,6 +5,19 @@
  * Version 1.1: October 25, 2017
  */
 
+appendListOptions = function (selId, list, val, name) {
+     var cmbIds = selId.split(/(\s+)/);
+     $.each(list, function (key, value) {
+         cmbIds.forEach(function (cmbId) {
+             var queryOn = "#" + cmbId;
+             $(queryOn).append($('<option>', {
+                     value: value[val]
+                 })
+                 .text(value[name]));
+         });
+     });
+ };
+
 (function ($) {
     "use strict";
 
@@ -31,20 +44,9 @@ function UiHelper() {
     var that = this;
 
     this.init = function () {
-        this.appendListOptions("statePick", stateList, "code", "name");
-        this.appendListOptions("racePick", raceList, "code", "name");
+        appendListOptions("statePick", stateList, "code", "name");
+        appendListOptions("racePick", raceList, "code", "name");
+        appendListOptions("metroPick", stateList, "code", "name");
     };
 
-    this.appendListOptions = function (selId, list, val, name) {
-        var cmbIds = selId.split(/(\s+)/);
-        $.each(list, function (key, value) {
-            cmbIds.forEach(function (cmbId) {
-                var queryOn = "#" + cmbId;
-                $(queryOn).append($('<option>', {
-                        value: value[val]
-                    })
-                    .text(value[name]));
-            });
-        });
-    };
 }
