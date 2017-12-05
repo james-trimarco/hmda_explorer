@@ -1,14 +1,12 @@
-//This url provides a list of all metropolitan statistical areas in the United States.
-var url = 'https://api.consumerfinance.gov:443/data/hmda/slice/hmda_lar.json?$select=msamd,msamd_name&$group=msamd,msamd_name&$orderBy=msamd,msamd_name&$limit=1000&$format=json'
-
 //This function tests whether a value exists within an array
 function isInArray(value, array) {
     return array.indexOf(value) > -1;
 }
 
-//Clicking the second button on index.html runs function metroQuery()
+// As app is initializing, this function grabs accurate list of metro names and ID numbers from CFBP
 function metroQuery(callback) {
-    console.log("running metroQuery() function") //Just confirming this function runs
+    //This url provides a list of all metropolitan statistical areas in the United States.
+    const url = 'https://api.consumerfinance.gov:443/data/hmda/slice/hmda_lar.json?$select=msamd,msamd_name&$group=msamd,msamd_name&$orderBy=msamd,msamd_name&$limit=1000&$format=json'
 
     var metroData = $.ajax({
             accept: 'application/json',
