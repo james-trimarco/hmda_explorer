@@ -78,4 +78,5 @@ function buildMetroList(val) {
 
     appendListOptions("metroPick", selectedCities, "msamd", "msamd_name");
     $('#metroPick').css('display', "block");
+    cacheQueries_metro(val, selectedCities);
 }
