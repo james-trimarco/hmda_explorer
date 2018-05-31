@@ -44,8 +44,9 @@
 
             <div id="controls">
 
-                <select id="statePick"></select>
+                <select id="statePick" onmousedown="this.value='';" onchange="buildMetroList(this.value)";></select>
                 <select id="racePick"></select>
+                <select id="metroPick"></select>
 
                 <button id="search">Show me loan approvals and denials in this state.</button>
             </div>
@@ -55,6 +56,8 @@
         <script type="text/javascript" src="lib/d3.v4.min.js"></script>
         <script type="text/javascript" src="scripts/state-race-loan-plotter.js"></script>
         <script type="text/javascript" src="scripts/listData.js"></script>
+        <script type="text/javascript" src="scripts/listCleanUp.js"></script>
+        <script type="text/javascript" src="scripts/buildScatterPlot.js"></script>
         <link rel="stylesheet" href="style.css">
 
         <script src="scripts/scripts.js"></script>
