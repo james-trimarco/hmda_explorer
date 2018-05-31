@@ -22,7 +22,7 @@ function buildScatterPlot(filtered, percentApproved) {
         legendSpacing = 4, // This defines the space between the squares in the legend.
         padding = 40, // This is the space between visualized data and the chart axes.
         firstYear = 2007, // This is the first year that the CFPB has data available.
-        lastYear = 2016, // Last year that CFPB has data available.
+        lastYear = 2017, // Last year that CFPB has data available.
         loanDenialColor = "red",
         loanApprovalColor = "black",
         percentApprovedColor = "steelblue";
