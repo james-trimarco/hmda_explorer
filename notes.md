@@ -69,7 +69,9 @@ The way this would work, narratively, is something like this:
 
 ##5. Mini Diary
 
-Monday, Dec 4: By the end of the day I had a working — if buggy — version of the metro-level data visualizer. I'm not sure it's that interesting, though! Most municipalities aren't that different than the states. We need to take this farther and look at some other aspects of the data. What about displaying the individual banks most likely to behave in certain ways?
+####Monday, Dec 4: 
+By the end of the day I had a working — if buggy — version of the metro-level data visualizer. I'm not sure it's that interesting, though! Most municipalities aren't that different than the states. We need to take this farther and look at some other aspects of the data. What about displaying the individual banks most likely to behave in certain ways?
 
-
+####Tuesday, Dec 5: 
+You should really think about hosting the COUNT() data from CFPB inside the visualizer app. 
 
